@@ -1,14 +1,11 @@
-setwd("D:/candidate")
-
-library(RCurl)
-library(XML)
-
 scrapeCandidateWebsite <- function(candidate.row, homepage = TRUE) {
+	require(RCurl)
+	require(XML)
 	folder <- paste(candidate.row$name, candidate.row$id, sep = "_")
 	folder <- gsub(" ", "_", folder)
 	dir.create(folder)
 	if(homepage) {
-	url <- candidate.row$homepage_url
+		url <- candidate.row$homepage_url
 	} else {
 		url <- candidate.row$party_ppc_page_url
 	}
@@ -47,22 +44,3 @@ scrapeCandidateWebsite <- function(candidate.row, homepage = TRUE) {
 	
 	return(length(links))
 }
-
-candidates <- read.csv("_source/candidates.csv",
-				 stringsAsFactors = FALSE)
-
-for(i in 1:nrow(candidates)) {
-	candidate.row <- candidates[i, ]
-	print(candidate.row$name)
-	try(scrapeCandidateWebsite(candidate.row = candidate.row)	)
-}
-
-
-
-
-candidate.row <- candidates[44, ]
-candidate.row <- candidates[candidates$id==2607, ]
-
-
-
-getwd()
