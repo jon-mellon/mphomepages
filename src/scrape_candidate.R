@@ -1,4 +1,10 @@
 setwd("D:/candidate")
+dir.create()
+
+current.date <- substr(date(),5, 10)
+current.date <- gsub(" ", "_", current.date)
+dir.create(current.date)
+setwd(current.date)
 source("C:/Users/Jon/Documents/mphomepages/src/scrape_functions.R")
 
 candidates <- read.csv("https://yournextmp.com/media/candidates.csv",

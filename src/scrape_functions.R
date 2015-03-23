@@ -3,7 +3,7 @@ scrapeCandidateWebsite <- function(candidate.row, homepage = TRUE) {
 	require(XML)
 	folder <- paste(candidate.row$name, candidate.row$id, sep = "_")
 	folder <- gsub(" ", "_", folder)
-	dir.create(folder)
+	
 	if(homepage) {
 		url <- candidate.row$homepage_url
 	} else {
@@ -12,6 +12,7 @@ scrapeCandidateWebsite <- function(candidate.row, homepage = TRUE) {
 	if(url=="") {
 		return(NULL)
 	}
+	dir.create(folder)
 	scrapeDepthOne <- function(url) {
 		cleanURL <- function(x) {
 			x <- gsub("http[s]*:*/*w*\\.*", "", x)
