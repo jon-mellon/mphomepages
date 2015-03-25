@@ -2,7 +2,7 @@ scrapeCandidateWebsite <- function(candidate.row, homepage = TRUE) {
 	require(RCurl)
 	require(XML)
 	folder <- paste(candidate.row$name, candidate.row$id, sep = "_")
-	folder <- gsub(" ", "_", folder)
+	folder <- gsub("[^[:alnum:]]", "_", folder)
 	
 	if(homepage) {
 		url <- candidate.row$homepage_url
