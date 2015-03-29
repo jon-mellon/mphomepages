@@ -32,7 +32,7 @@ scrapeCandidateWebsite <- function(candidate.row, homepage = TRUE) {
 		if(!grepl("\\.[[:alpha:]]+$", url)) {
 			download.file(url, 
 										destfile = paste0(folder, "/",
-																			gsub("[/:\\.]", "_", url), ".html"))
+																			gsub("[^[:alnum:]]", "_", url), ".html"))
 		} else {
 			file.type <- strsplit(url, "\\.")[[1]] 
 			file.type <- file.type[length(file.type)]
