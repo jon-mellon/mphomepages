@@ -38,7 +38,7 @@ scrapeCandidateWebsite <- function(candidate.row, homepage = TRUE) {
 			file.type <- file.type[length(file.type)]
 			download.file(URLencode(url), 
 										destfile = paste0(folder, "/",
-																			gsub("[/:\\.]", "_", url), ".", file.type))	
+																			gsub("[^[:alnum:]]", "_", url), ".", file.type))	
 		}
 	}
 	lapply(links, downloadPage, folder = folder)
